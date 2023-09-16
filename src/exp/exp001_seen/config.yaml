@@ -1,0 +1,60 @@
+# データのパス
+train_csv_path: data/train.csv
+test_csv_path: data/test.csv
+submission_csv_path: data/sample_submission.csv
+anime_csv_path: data/anime.csv
+
+# 特徴量のパス
+features_dir: results/features
+target_train_file: target_seen_train.pkl
+group_train_file: group_seen_train.pkl
+
+# 学習結果のパス
+models_dir: results/models
+oof_dir: results/oof
+logs_dir: results/logs
+submission_dir: results/submission
+figs_dir: results/figs
+
+# 学習条件
+model_name: LightGBM
+target_col: score
+metric: RMSE
+
+# CVの設定
+cv_method: StratifiedKFold
+n_splits: 5
+shuffle: true
+seed: 42
+group_col: null
+
+# 学習に使う特徴量
+features: [
+  "Word2vecAnimeBlock",
+  "Word2vecUserBlock",
+  "GroupbyBlock",
+]
+
+# LightGBMのパラメータ
+lgb_params:
+  boosting_type: gbdt
+  objective: regression
+  metric: rmse
+  learning_rate: 0.05
+  max_depth: 5
+  num_leaves: 31
+  min_child_samples: 1
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_alpha: 0
+  reg_lambda: 1
+  n_estimators: 150000
+  seed: 42
+  verbosity: -1
+  importance_type: gain
+lgb_fit_params:
+  eval_metric: rmse
+  early_stopping_rounds : 750
+  verbose: -1
+  log_evaluation : 1000
+  categorical_feature: []
