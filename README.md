@@ -43,4 +43,3 @@ docker compose up -d --build dev
   ```bash
   python3 src/exp/exp001_concat/concat.py
   ```
-# atmacup15
